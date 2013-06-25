@@ -1,0 +1,20 @@
+---
+- name: Install NTP Packages
+  yum: pkg={{ item }} state=present
+  with_items:
+    - ntp
+    - ntpdate
+
+- name: Configure NTP
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  when: ntp_server is defined
+
+- name: Run NTPDate
+  service: name=ntpdate state=started
+
+- name: Sync Hardware Clock
+  command: hwclock --systohc
+
+- name: Start NTP
+  service: name=ntpd state=restarted enabled=true
+

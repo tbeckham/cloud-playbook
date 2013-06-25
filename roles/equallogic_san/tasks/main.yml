@@ -1,0 +1,2 @@
+---
+- include: install_equallogic_san.yml

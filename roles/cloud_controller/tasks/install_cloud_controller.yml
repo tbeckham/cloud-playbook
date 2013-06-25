@@ -1,0 +1,7 @@
+---
+- name: Install Cloud Controller
+  yum: pkg=eucalyptus-cloud state=present
+
+- name: Install VMWare Broker Libs
+  yum: pkg=eucalyptus-enterprise-vmware-broker-libs state=present
+  when: vmware_broker in groups

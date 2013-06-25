@@ -1,0 +1,5 @@
+---
+- name: Add Public Key
+  authorized_key: key="{{ lookup('file', pubkey) }}" 
+                  user=root
+  when: pubkey is defined

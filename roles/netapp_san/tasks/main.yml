@@ -1,0 +1,2 @@
+---
+- include: install_netapp_san.yml
