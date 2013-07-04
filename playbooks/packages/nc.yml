@@ -1,0 +1,10 @@
+---
+- name: Node Controller Install
+  hosts: node_controller
+  vars_files:
+    - ['../cloud_config.yml', '../vars/cloud_defaults.yml']
+  tasks:
+    - name: Node Package Install
+      yum: pkg=eucalyptus-node state=present
+      tags:
+        - packages

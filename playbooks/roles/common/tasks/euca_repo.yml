@@ -1,0 +1,14 @@
+---
+- name: Install Eucalyptus Repository
+  template: src=eucalyptus.repo.j2 dest=/etc/yum.repos.d/eucalyptus.repo
+  tags:
+    - repository
+    - packages
+
+- name: Install Enterprise Repository
+  template: src=eucalyptus-enterprise.repo.j2 dest=/etc/yum.repos.d/eucalyptus-enterprise.repo
+  when: enterprise_commit_ref is defined
+  tags:
+    - repository
+    - packages
+

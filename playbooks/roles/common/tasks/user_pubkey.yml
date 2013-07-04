@@ -1,0 +1,9 @@
+---
+- name: Add Public Key
+  authorized_key: user=root key='{{ item }}'
+  when: pubkey is defined
+  with_file:
+    - '{{ pubkey }}'
+  tags:
+    - preconfig
+

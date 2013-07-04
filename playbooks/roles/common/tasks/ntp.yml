@@ -1,0 +1,38 @@
+---
+- name: Install NTP Packages
+  yum: pkg='ntp,ntpdate' state=present
+  tags:
+    - preconfig
+    - ntp
+
+- name: Configure NTP
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  when: ntp_server is defined
+  tags:
+    - preconfig
+    - ntp
+
+- name: Ensure NTP Service Stopped
+  service: name=ntpd state=stopped
+  tags:
+    - preconfig
+    - ntp
+
+- name: Run NTPDate
+  service: name=ntpdate state=started
+  tags:
+    - preconfig
+    - ntp
+
+- name: Sync Hardware Clock
+  command: hwclock --systohc
+  tags:
+    - preconfig
+    - ntp
+
+- name: Start NTP
+  service: name=ntpd state=started enabled=true
+  tags:
+   - preconfig
+   - ntp
+

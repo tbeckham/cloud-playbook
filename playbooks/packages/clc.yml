@@ -1,0 +1,34 @@
+---
+- name: Install Cloud Controller
+  hosts: cloud_controller
+  vars_files:
+    - ['../cloud_config.yml', '../vars/cloud_defaults.yml']
+  tasks:
+    - name: Cloud Package Install
+      yum: pkg=eucalyptus-cloud state=present
+      tags:
+        - packages
+
+    - name: VMWare Broker Libs Install
+      yum: pkg=eucalyptus-enterprise-vmware-broker-libs state=present
+      when: vmware_broker in groups
+      tags:
+        - packages
+
+    - name: EMC Libs Install
+      yum: pkg=eucalyptus-enterprise-storage-san-emc-libs state=present
+      when: san_provider == 'EmcVnxProvider'
+      tags:
+        - packages
+
+    - name: Equallogic Libs Install
+      yum: pkg=eucalyptus-enterprise-storage-san-equallogic-libs state=present
+      when: san_provider == 'EquallogicProvider'
+      tags:
+        - packages
+
+    - name: NetApp Libs Install
+      yum: pkg=eucalyptus-enterprise-storage-san-netapp-libs state=present
+      when: san_provider == 'NetappProvider'
+      tags:
+        - packages

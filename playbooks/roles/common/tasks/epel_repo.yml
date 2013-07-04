@@ -1,0 +1,12 @@
+---
+- name: Install EPEL Key
+  copy: src=RPM-GPG-KEY-EPEL-6 dest=/etc/pki/rpm-gpg
+  tags:
+    - repository
+    - epel
+
+- name: Install EPEL Repository
+  copy: src=epel.repo dest=/etc/yum.repos.d
+  tags:
+    - repository
+    - epel

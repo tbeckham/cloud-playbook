@@ -1,0 +1,32 @@
+---
+- name: Common Host Configuration
+  hosts: all
+  vars_files:
+    - ['../cloud_config.yml', '../vars/cloud_defaults.yml']
+  roles:
+    - common
+
+- name: Install Repositories
+  hosts: all
+  vars_files:
+    - ../cloud_config.yml
+  tasks:
+    - name: Eucalyptus Repository
+      template: src=templates/eucalyptus.repo.j2 dest=/etc/yum.repos.d/eucalyptus.repo
+      tags:
+        - repository
+        - packages
+
+    - name: Enterprise Repository
+      template: src=templates/eucalyptus-enterprise.repo.j2 dest=/etc/yum.repos.d/eucalyptus-enterprise.repo
+      when: enterprise_commit_ref is defined
+      tags:
+        - repository
+        - packages
+
+- include: packages/clc.yml
+- include: packages/cc.yml
+- include: packages/sc.yml
+- include: packages/walrus.yml
+- include: packages/nc.yml
+

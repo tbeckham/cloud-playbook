@@ -1,0 +1,21 @@
+---
+# Git commit reference for Eucalyptus packages
+eucalyptus_commit_ref: testing
+
+# Git commit reference for Enterprise packages
+enterprise_commit_ref: testing
+
+# Default NTP Server
+ntp_server: qa-system.eucalyptus-systems.com
+
+# User Public Key
+#pubkey: ~/.ssh/id_rsa.pub
+
+#use_vmware: true
+#vcenter_url: https://192.168.12.34/sdk
+#vcenter_login: foo
+#vcenter_pass: bar
+#
+#san_provider: NetappProvider
+#san_provider: EquallogicProvider
+#san_provider: EmcVnxProvider

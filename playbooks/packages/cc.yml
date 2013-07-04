@@ -1,0 +1,16 @@
+---
+- name: Install Cluster Controller
+  hosts: cluster_controller
+  vars_files:
+    - ['../cloud_config.yml', '../vars/cloud_defaults.yml']
+  tasks:
+    - name: Cluster Package Install
+      yum: pkg=eucalyptus-cc state=present
+      tags:
+        - packages
+
+    - name: VMWare Broker Install 
+      yum: pkg=eucalyptus-enterprise-vmware-broker state=present
+      when: vmware_broker in groups
+      tags:
+        - packages

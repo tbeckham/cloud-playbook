@@ -1,0 +1,13 @@
+---
+eucalyptus_commit_ref: testing
+enterprise_commit_ref: testing
+ntp_server: qa-system.eucalyptus-systems.com
+# pubkey: ~/.ssh/id_rsa.pub
+
+#
+# Enterprise Config Options
+#
+# use_vmware: true
+# vmware_sdk_url: http://packages.release.eucalyptus-systems.com/yum/tags/euca-master-plugin-build-bootstrap/centos/6/x86_64/
+# san_provider: NetappProvider
+

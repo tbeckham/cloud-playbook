@@ -1,0 +1,28 @@
+---
+- name: Install Storage Controller
+  hosts: storage_controller
+  vars_files:
+    - ['../cloud_config.yml', '../vars/cloud_defaults.yml']
+  tasks:
+    - name: Storage Package Install 
+      yum: pkg=eucalyptus-sc state=present
+      tags:
+        - packages
+
+    - name: EMC SAN Install
+      yum: pkg=eucalyptus-enterprise-storage-san-emc state=present 
+      when: san_provider == 'EmcVnxProvider'
+      tags:
+        - packages
+
+    - name: Equallogic SAN Install
+      yum: pkg=eucalyptus-enterprise-storage-san-equallogic state=present
+      when: san_provider == 'EquallogicProvider'
+      tags:
+        - packages
+
+    - name: NetApp SAN Install
+      yum: pkg=eucalyptus-enterprise-storage-san-netapp state=present
+      when: san_provider == 'NetappProvider'
+      tags:
+        - packages
