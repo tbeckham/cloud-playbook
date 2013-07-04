@@ -1,3 +1,0 @@
----
-- name: Install Walrus
-  yum: pkg=eucalyptus-walrus state=present

@@ -1,3 +1,0 @@
----
-- name: Install Equallogic SAN
-  yum: pkg=eucalyptus-enterprise-storage-san-equallogic state=present

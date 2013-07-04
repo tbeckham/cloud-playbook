@@ -1,3 +1,0 @@
----
-- name: Install Node Controller
-  yum: pkg=eucalyptus-nc state=present

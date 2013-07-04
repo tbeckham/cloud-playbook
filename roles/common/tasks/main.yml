@@ -1,7 +1,0 @@
----
-- include: install_repositories.yml
-- include: install_ntp.yml
-- include: disable_firewall.yml
-- include: dhclient_persistent.yml
-- include: add_pubkey.yml
-

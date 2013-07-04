@@ -1,7 +1,0 @@
----
-- name: Disable IPTables
-  service: name=iptables state=stopped enabled=false
-
-- name: Remove IPTables Rules
-  command: rm -f /etc/sysconfig/iptables removes=/etc/sysconfig/iptables
-

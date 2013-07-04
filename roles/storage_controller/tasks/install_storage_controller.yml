@@ -1,3 +1,0 @@
----
-- name: Install Storage Controller
-  yum: pkg=eucalyptus-sc state=present

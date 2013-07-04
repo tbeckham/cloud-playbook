@@ -1,3 +1,0 @@
----
-- name: Install VMWare Broker
-  yum: pkg=eucalyptus-vmware-broker state=present

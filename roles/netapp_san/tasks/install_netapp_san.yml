@@ -1,3 +1,0 @@
----
-- name: Install NetApp SAN
-  yum: pkg=eucalyptus-enterprise-storage-san-netapp state=present
