@@ -13,7 +13,8 @@
     - vars/source.yml
   tasks:
     - name: Install Development Repository
-      template: src=templates/eucalyptus-devel.repo.j2 dest=/etc/yum.repos.d/eucalyptus-devel.repo
+      template: src=templates/eucalyptus-devel.repo.j2
+                dest=/etc/yum.repos.d/eucalyptus-devel.repo
 
     - name: Install Build Dependencies
       yum: pkg={{ devel_packages|join(',') }} state=installed
@@ -29,3 +30,24 @@
              {{ configure_cmd }}
       environment:
         EUCALYPTUS: '{{ eucalyptus_prefix }}'
+      tags:
+        - source_build
+
+    - name: Build Eucalyptus Source
+      shell: chdir={{ eucalyptus_source_dir }}
+             executable=/bin/bash
+             make -j8
+      environment:
+        EUCALYPTUS: '{{ eucalyptus_prefix }}'
+      tags:
+        - source_build
+
+    - name: Install Eucalyptus Source
+      shell: chdir={{ eucalyptus_source_dir }}
+             executable=/bin/bash
+             make deploy
+      environment:
+        EUCALYPTUS: '{{ eucalyptus_prefix }}'
+      tags:
+        - source_build
+
