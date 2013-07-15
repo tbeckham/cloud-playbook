@@ -1,0 +1,24 @@
+---
+- name: VMWare Broker Libs Install
+  yum: pkg=eucalyptus-enterprise-vmware-broker-libs state=present
+  when: vmware_broker in groups
+  tags:
+    - packages
+
+- name: EMC Libs Install
+  yum: pkg=eucalyptus-enterprise-storage-san-emc-libs state=present
+  when: san_provider == 'EmcVnxProvider'
+  tags:
+    - packages
+
+- name: Equallogic Libs Install
+  yum: pkg=eucalyptus-enterprise-storage-san-equallogic-libs state=present
+  when: san_provider == 'EquallogicProvider'
+  tags:
+    - packages
+
+- name: NetApp Libs Install
+  yum: pkg=eucalyptus-enterprise-storage-san-netapp-libs state=present
+  when: san_provider == 'NetappProvider'
+  tags:
+    - packages

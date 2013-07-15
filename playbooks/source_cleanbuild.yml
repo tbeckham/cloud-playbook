@@ -13,4 +13,10 @@
     - vars/source.yml
   tasks:
     - include: tasks/deps.yml
+    - name: Clean Prior to Build
+      shell: chdir={{ eucalyptus_source_dir }}
+             executable=/bin/bash
+             make distclean
+      environment:
+        EUCALYPTUS: '{{ eucalyptus_prefix }}'
     - include: tasks/build.yml

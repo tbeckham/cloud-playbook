@@ -1,0 +1,27 @@
+- name: Install Development Repository
+  template: src=templates/eucalyptus-devel.repo.j2
+            dest=/etc/yum.repos.d/eucalyptus-devel.repo
+
+- include: vddk.yml
+  when: use_vmware == true
+
+- name: Install Build Dependencies
+  yum: pkg={{ devel_packages|join(',') }} state=installed
+
+- name: Authorize QA Keys
+  authorized_key: user=root key='{{ item }}'
+  with_file:
+    - ../files/qa-public-1.key
+    - ../files/qa-public-2.key
+
+- name: Install SSH Configuration
+  copy: src=../files/ssh_config dest=~/.ssh/config
+
+- name: Checkout Eucalyptus Repository
+  git: dest={{ eucalyptus_source_dir }}
+       repo={{ eucalyptus_repo }}
+       version={{ enterprise_commit_ref }}
+
+- name: Download WSDL Script
+  get_url: url=https://raw.github.com/eucalyptus/eucalyptus-rpmspec/master/euca-WSDL2C.sh
+           dest=/opt/euca-WSDL2C.sh

@@ -1,18 +1,23 @@
-machine00 ansible_ssh_host=10.111.5.82
-machine01 ansible_ssh_host=10.111.5.83
+machine00 ansible_ssh_host=192.168.1.10
+machine01 ansible_ssh_host=192.168.1.11
+machine02 ansible_ssh_host=192.168.1.12
 
 [cloud_controller]
 machine00
+machine01
 
 [cluster_controller]
 machine00
+machine01
 
 [storage_controller]
 machine00
+machine01
 
 [walrus]
 machine00
+machine01
 
 [node_controller]
-machine01
+machine02
 

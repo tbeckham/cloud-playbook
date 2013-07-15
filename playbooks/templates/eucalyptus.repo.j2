@@ -5,7 +5,11 @@
 
 [eucalyptus]
 name=Eucalyptus OSS
+{% if eucalyptus_repo_url is defined %}
+baseurl={{ eucalyptus_repo_url }}
+{% else %}
 mirrorlist=http://packages.release.eucalyptus-systems.com/api/1/genrepo?distro=centos&releasever=$releasever&arch=$basearch&url=repo-euca@git.eucalyptus-systems.com:eucalyptus.git&ref={{ eucalyptus_commit_ref }}
+{% endif %}
 gpgcheck=0
 enabled=1
 

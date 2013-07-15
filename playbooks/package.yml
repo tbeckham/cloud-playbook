@@ -9,7 +9,7 @@
 - name: Install Repositories
   hosts: all
   vars_files:
-    - ../cloud_config.yml
+    - ['../cloud_config.yml']
   tasks:
     - name: Eucalyptus Repository
       template: src=templates/eucalyptus.repo.j2 dest=/etc/yum.repos.d/eucalyptus.repo
@@ -19,7 +19,7 @@
 
     - name: Enterprise Repository
       template: src=templates/eucalyptus-enterprise.repo.j2 dest=/etc/yum.repos.d/eucalyptus-enterprise.repo
-      when: enterprise_commit_ref is defined
+      when: install_enterprise == true
       tags:
         - repository
         - packages

@@ -1,3 +1,0 @@
----
-- name: Add VDDK Repository
-  template: src:vddk.repo.j2 dst:/etc/yum.repos.d/

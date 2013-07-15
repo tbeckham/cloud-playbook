@@ -1,15 +1,22 @@
 ---
+eucalyptus_repo_url: http://downloads.eucalyptus.com/software/eucalyptus/nightly/3.4/centos/6/x86_64/
 eucalyptus_commit_ref: testing
 enterprise_commit_ref: testing
+install_enterprise: false
 eucalyptus_repo: repo-euca@git.eucalyptus-systems.com:internal.git
-ntp_server: qa-system.eucalyptus-systems.com
+# ntp_server: qa-system.eucalyptus-systems.com
+ntp_server: 192.168.1.144
 pubkey: ~/.ssh/id_rsa.pub
-install_type: package
 
 #
-# Enterprise Config Options
+# VMWare Broker Configuration
 #
 use_vmware: true
 vmware_sdk_url: http://packages.release.eucalyptus-systems.com/yum/tags/euca-master-plugin-build-bootstrap/centos/6/x86_64/
+
+#
+# SAN Provider Configuration
+#
+use_san: true
 san_provider: NetappProvider
 

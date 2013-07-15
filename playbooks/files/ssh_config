@@ -1,0 +1,3 @@
+Host git.eucalyptus-systems.com
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null

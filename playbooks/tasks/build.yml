@@ -1,0 +1,26 @@
+- name: Configure Eucalyptus Source
+  shell: chdir={{ eucalyptus_source_dir }}
+         executable=/bin/bash
+         {{ configure_cmd }}
+  environment:
+    EUCALYPTUS: '{{ eucalyptus_prefix }}'
+  tags:
+    - source_build
+
+- name: Build Eucalyptus Source
+  shell: chdir={{ eucalyptus_source_dir }}
+         executable=/bin/bash
+         make -j8
+  environment:
+    EUCALYPTUS: '{{ eucalyptus_prefix }}'
+  tags:
+    - source_build
+
+- name: Install Eucalyptus Source
+  shell: chdir={{ eucalyptus_source_dir }}
+         executable=/bin/bash
+         make deploy
+  environment:
+    EUCALYPTUS: '{{ eucalyptus_prefix }}'
+  tags:
+    - source_build

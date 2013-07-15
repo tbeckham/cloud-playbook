@@ -1,16 +1,22 @@
 ---
-configure_cmd: ./configure --with-axis2c=/usr/lib64/axis2c --prefix=$EUCALYPTUS --with-apache2-module-dir=/usr/lib64/httpd/modules --with-db-home=/usr/pgsql-9.1 --with-wsdl2c-sh=/opt/euca-WSDL2C.sh --with-vddk=/opt/vddk
+configure_cmd: ./configure --with-axis2c=/usr/lib64/axis2c --prefix=$EUCALYPTUS --with-apache2-module-dir=/usr/lib64/httpd/modules --with-db-home=/usr/pgsql-9.1 --with-wsdl2c-sh=/opt/euca-WSDL2C.sh --with-vddk=/opt/packages/vddk
 devel_repo: euca-master-build-bootstrap
+vddk_repo_url: http://packages.release.eucalyptus-systems.com/yum/tags/euca-master-plugin-build-bootstrap/centos/$releasever/$basearch/
 devel_packages:
-  - '@developer-tools'
+  - '@development'
   - ant
   - ant-nodeps
   - apache-ivy
+  - axis2-adb
   - axis2-adb-codegen
+  - axis2-codegen
   - axis2c-devel
   - axis2-codegen
+  - curl-devel
   - gawk
+  - git
   - java7-devel
+  - jpackage-utils
   - libvirt-devel
   - libxml2-devel
   - libxslt-devel

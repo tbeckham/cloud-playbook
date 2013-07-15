@@ -1,0 +1,7 @@
+---
+- name: Install VDDK Repository
+  template: src=../templates/vddk.repo.j2 dest=/etc/yum.repos.d/vddk.repo
+
+- name: Install VDDK Package
+  yum: pkg=vmware-vix-disklib state=latest
+
