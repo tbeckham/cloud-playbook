@@ -1,0 +1,9 @@
+DEVICE="{{ interface }}"
+HWADDR="{{ mac|upper }}"
+NM_CONTROLLED="no"
+PERSISTENT_DHCLIENT="yes"
+ONBOOT="yes"
+BRIDGE=br0
+{% for i in range(0,nameservers|length) %}
+DNS{{ i + 1 }}={{ nameservers[i] }}
+{% endfor %}

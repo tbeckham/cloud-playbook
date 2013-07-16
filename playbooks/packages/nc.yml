@@ -3,7 +3,30 @@
   hosts: node_controller
   vars_files:
     - ['../../cloud_config.yml', '../../vars/cloud_defaults.yml']
+  vars:
+      interface: '{{ ansible_default_ipv4.alias }}'
+      mac: '{{ ansible_default_ipv4.macaddress }}'
+      nameservers:
+        - '10.1.1.254'
+        - '8.8.8.8'
   tasks:
+    - name: Update Interface Configuration
+      template: src=../templates/ifcfg.j2
+                dest=/etc/sysconfig/network-scripts/ifcfg-{{ interface }}
+      tags:
+        - network
+
+    - name: Install Bridge Configuration
+      copy: src=../files/ifcfg-br0
+            dest=/etc/sysconfig/network-scripts/
+      tags:
+        - network
+
+    - name: Restart Networking
+      service: name=network state=restarted
+      tags:
+        - network
+
     - name: Node Package Install
       yum: pkg=eucalyptus-nc state=present
       tags:
