@@ -15,11 +15,11 @@
         - packages
 
     - name: Install DRBD
-      yum: pkg=drbd83,drbd83-kmod state=latest
+      yum: name=drbd83,drbd83-kmod state=latest
       tags:
         - packages
 
     - name: Walrus Package Install
-      yum: pkg=eucalyptus-walrus state=present
+      yum: name=eucalyptus-walrus state=latest
       tags:
         - packages

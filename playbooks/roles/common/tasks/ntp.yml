@@ -1,6 +1,6 @@
 ---
 - name: Install NTP Packages
-  yum: pkg='ntp,ntpdate' state=present
+  yum: name='ntp,ntpdate' state=latest
   tags:
     - preconfig
     - ntp

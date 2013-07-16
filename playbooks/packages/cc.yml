@@ -5,12 +5,12 @@
     - ['../../cloud_config.yml', '../../vars/cloud_defaults.yml']
   tasks:
     - name: Cluster Package Install
-      yum: pkg=eucalyptus-cc state=present
+      yum: name=eucalyptus-cc state=latest
       tags:
         - packages
 
     - name: VMWare Broker Install 
-      yum: pkg=eucalyptus-enterprise-vmware-broker state=present
+      yum: name=eucalyptus-enterprise-vmware-broker state=latest
       when: vmware_broker in groups
       tags:
         - packages

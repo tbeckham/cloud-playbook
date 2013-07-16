@@ -5,7 +5,7 @@
     - ['../../cloud_config.yml', '../../vars/cloud_defaults.yml']
   tasks:
     - name: Cloud Package Install
-      yum: pkg=eucalyptus-cloud state=present
+      yum: name=eucalyptus-cloud state=latest
       tags:
         - packages
     - include: clc_enterprise.yml

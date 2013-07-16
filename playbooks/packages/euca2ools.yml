@@ -9,4 +9,4 @@
                 dest=/etc/yum.repos.d/euca2ools.repo
 
     - name: Install Euca2ools Package
-      yum: pkg=euca2ools state=latest
+      yum: name=euca2ools state=latest

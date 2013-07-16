@@ -5,4 +5,4 @@
     - ['../../cloud_config.yml', '../../var/cloud_defaults.cfg']
   tasks:
     - name: Install Eucalyptus Console Package
-      yum: pkg=eucalyptus-console state=latest
+      yum: name=eucalyptus-console state=latest

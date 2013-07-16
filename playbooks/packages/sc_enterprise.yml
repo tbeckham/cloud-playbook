@@ -1,18 +1,18 @@
 ---
 - name: EMC SAN Install
-  yum: pkg=eucalyptus-enterprise-storage-san-emc state=present 
+  yum: name=eucalyptus-enterprise-storage-san-emc state=latest 
   when: san_provider == 'EmcVnxProvider'
   tags:
     - packages
 
 - name: Equallogic SAN Install
-  yum: pkg=eucalyptus-enterprise-storage-san-equallogic state=present
+  yum: name=eucalyptus-enterprise-storage-san-equallogic state=latest
   when: san_provider == 'EquallogicProvider'
   tags:
     - packages
 
 - name: NetApp SAN Install
-  yum: pkg=eucalyptus-enterprise-storage-san-netapp state=present
+  yum: name=eucalyptus-enterprise-storage-san-netapp state=latest
   when: san_provider == 'NetappProvider'
   tags:
     - packages

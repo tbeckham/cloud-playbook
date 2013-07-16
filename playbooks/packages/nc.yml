@@ -25,7 +25,7 @@
         - network
 
     - name: Node Package Install
-      yum: pkg=eucalyptus-nc state=present
+      yum: name=eucalyptus-nc state=latest
       tags:
         - packages
 

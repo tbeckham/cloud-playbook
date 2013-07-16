@@ -5,7 +5,7 @@
     - ['../../cloud_config.yml', '../../vars/cloud_defaults.yml']
   tasks:
     - name: Storage Package Install 
-      yum: pkg=eucalyptus-sc state=present
+      yum: name=eucalyptus-sc state=latest
       tags:
         - packages
     - include: sc_enterprise.yml
