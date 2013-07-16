@@ -1,0 +1,8 @@
+---
+- name: Eucalyptus Console Installation
+  hosts: user_console
+  vars_files:
+    - ['../../cloud_config.yml', '../../var/cloud_defaults.cfg']
+  tasks:
+    - name: Install Eucalyptus Console Package
+      yum: pkg=eucalyptus-console state=latest

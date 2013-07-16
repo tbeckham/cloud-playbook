@@ -24,6 +24,8 @@
         - repository
         - packages
 
+- include: packages/euca2ools.yml
+- include: packages/console.yml
 - include: packages/clc.yml
 - include: packages/cc.yml
 - include: packages/sc.yml

@@ -13,17 +13,14 @@
     - name: Update Interface Configuration
       template: src=../templates/ifcfg.j2
                 dest=/etc/sysconfig/network-scripts/ifcfg-{{ interface }}
+      notify: Restart Networking
       tags:
         - network
 
     - name: Install Bridge Configuration
       copy: src=../files/ifcfg-br0
             dest=/etc/sysconfig/network-scripts/
-      tags:
-        - network
-
-    - name: Restart Networking
-      service: name=network state=restarted
+      notify: Restart Networking
       tags:
         - network
 
@@ -31,3 +28,9 @@
       yum: pkg=eucalyptus-nc state=present
       tags:
         - packages
+
+  handlers:
+    - name: Restart Networking
+      service: name=network state=restarted
+      tags:
+        - network

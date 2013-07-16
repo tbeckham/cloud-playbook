@@ -1,0 +1,12 @@
+---
+- name: Euca2ools Installation
+  hosts: all
+  vars_files:
+    - ['../../cloud_config.yml', '../../var/cloud_defaults.yml']
+  tasks:
+    - name: Install Euca2ools Repository
+      template: src=../templates/euca2ools.repo.j2
+                dest=/etc/yum.repos.d/euca2ools.repo
+
+    - name: Install Euca2ools Package
+      yum: pkg=euca2ools state=latest

@@ -1,5 +1,6 @@
 ---
 eucalyptus_repo_url: http://downloads.eucalyptus.com/software/eucalyptus/nightly/3.4/centos/6/x86_64/
+euca2ools_repo_url: http://downloads.eucalyptus.com/software/euca2ools/3.0/centos/6/x86_64/
 eucalyptus_commit_ref: testing
 enterprise_commit_ref: testing
 install_enterprise: false
@@ -11,12 +12,13 @@ pubkey: ~/.ssh/id_rsa.pub
 #
 # VMWare Broker Configuration
 #
-use_vmware: true
+use_vmware: false
 vmware_sdk_url: http://packages.release.eucalyptus-systems.com/yum/tags/euca-master-plugin-build-bootstrap/centos/6/x86_64/
 
 #
 # SAN Provider Configuration
 #
-use_san: true
+use_san: false
+# VALUES: NetappProvider, EmcVnxProvider, EquallogicProvider
 san_provider: NetappProvider
 

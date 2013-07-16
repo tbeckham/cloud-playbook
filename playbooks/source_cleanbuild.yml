@@ -6,6 +6,8 @@
   roles:
     - common
 
+- include: packages/euca2ools.yml
+
 - name: Prepare Source
   hosts: all
   vars_files:

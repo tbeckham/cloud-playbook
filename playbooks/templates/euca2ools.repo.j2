@@ -1,0 +1,15 @@
+#
+# GENERATED FILE, DO NOT EDIT
+# {{ ansible_managed }}
+#
+
+[euca2ools]
+name=Euca2ools
+{% if euca2ools_repo_url is defined %}
+baseurl={{ euca2ools_repo_url }}
+{% else %}
+mirrorlist=http://packages.release.eucalyptus-systems.com/api/1/genrepo?distro=centos&releasever=$releasever&arch=$basearch&url=git://github.com/eucalyptus/euca2ools.git&ref={{ euca2ools_commit_ref }}
+{% endif %}
+gpgcheck=0
+enabled=1
+
