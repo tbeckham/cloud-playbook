@@ -3,7 +3,7 @@
   lineinfile: line="PERSISTENT_DHCLIENT=yes"
               regexp="^PERSISTENT_DHCLIENT=(yes|1)"
               create=no
-              state=latest
+              state=present
               dest="/etc/sysconfig/network-scripts/ifcfg-{{ ansible_default_ipv4.alias }}"
   notify:
     - Restart Networking
