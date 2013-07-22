@@ -5,7 +5,11 @@
 
 [eucalyptus-devel]
 name=Eucalyptus Development
+{% if devel_repo_url is defined %}
+baseurl={{ devel_repo_url }}
+{% else %}
 baseurl=http://packages.release.eucalyptus-systems.com/yum/tags/{{ devel_repo }}/centos/$releasever/$basearch/
+{% endif %}
 gpgcheck=0
 enabled=1
 
