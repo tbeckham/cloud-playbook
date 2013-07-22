@@ -2,7 +2,8 @@
 - name: Common Host Configuration
   hosts: all
   vars_files:
-    - ['../cloud_config.yml', '../vars/cloud_defaults.yml']
+    - vars/cloud_defaults.yml
+    - ['../cloud_config.yml']
   roles:
     - common
 
@@ -11,8 +12,9 @@
 - name: Prepare Source
   hosts: all
   vars_files:
-    - ../cloud_config.yml
+    - vars/cloud_defaults.yml
     - vars/source.yml
+    - ['../cloud_config.yml']
   tasks:
     - include: tasks/deps.yml
     - include: tasks/build.yml
