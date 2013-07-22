@@ -17,10 +17,17 @@
 - name: Install SSH Configuration
   copy: src=../files/ssh_config dest=~/.ssh/config
 
-- name: Checkout Eucalyptus Repository
+- name: Checkout Internal Eucalyptus Repository
   git: dest={{ eucalyptus_source_dir }}
        repo={{ eucalyptus_repo }}
        version={{ enterprise_commit_ref }}
+  when: install_enterprise == true
+
+- name: Checkout Github Eucalyptus Repository
+  git: dest={{ eucalyptus_source_dir }}
+       repo={{ eucalyptus_repo }}
+       version={{ eucalyptus_commit_ref }}
+  when: install_enterprise == false
 
 - name: Download WSDL Script
   get_url: url=https://raw.github.com/eucalyptus/eucalyptus-rpmspec/master/euca-WSDL2C.sh

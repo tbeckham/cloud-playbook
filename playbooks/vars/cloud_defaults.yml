@@ -3,6 +3,9 @@ eucalyptus_commit_ref: testing
 enterprise_commit_ref: testing
 ntp_server: qa-system.eucalyptus-systems.com
 pubkey: ~/.ssh/id_rsa.pub
+install_enterprise: false
+use_san: false
+use_vmware: false
 
 #
 # Enterprise Config Options
