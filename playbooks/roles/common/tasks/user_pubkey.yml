@@ -1,9 +1,15 @@
 ---
+- name: Check for Public Key
+  local_action: shell test -f {{ pubkey }}
+  register: pubkey_exists
+  tags:
+    - preconfig
+
 - name: Add Public Key
   authorized_key: user=root key='{{ item }}'
-  when: pubkey is defined
   with_file:
     - '{{ pubkey }}'
+  when: pubkey_exists|success
   tags:
     - preconfig
 
