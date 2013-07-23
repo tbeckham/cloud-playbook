@@ -1,0 +1,11 @@
+---
+- name: Clean source
+  hosts: all
+  tasks:
+    - name: Run make distclean
+      shell: chdir={{ eucalyptus_source_dir }}
+             executable=/bin/bash
+             make distclean
+      environment:
+        EUCALYPTUS: '{{ eucalyptus_prefix }}'
+
