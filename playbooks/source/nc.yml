@@ -8,5 +8,5 @@
   tasks:
     - name: Install Node Controller Symlink
       file: src={{ eucalyptus_prefix }}/etc/init.d/eucalyptus-nc
-            dst=/etc/init.d/eucalyptus-nc
+            dest=/etc/init.d/eucalyptus-nc
             state=link

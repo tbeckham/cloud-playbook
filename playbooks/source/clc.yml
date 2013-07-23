@@ -8,5 +8,5 @@
   tasks:
     - name: Install Cloud Controller Symlink
       file: src={{ eucalyptus_prefix }}/etc/init.d/eucalyptus-cloud
-            dst=/etc/init.d/eucalyptus-cloud
+            dest=/etc/init.d/eucalyptus-cloud
             state=link
