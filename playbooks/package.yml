@@ -13,18 +13,7 @@
     - vars/cloud_defaults.yml
     - ['../cloud_config.yml']
   tasks:
-    - name: Eucalyptus Repository
-      template: src=templates/eucalyptus.repo.j2 dest=/etc/yum.repos.d/eucalyptus.repo
-      tags:
-        - repository
-        - package
-
-    - name: Enterprise Repository
-      template: src=templates/eucalyptus-enterprise.repo.j2 dest=/etc/yum.repos.d/eucalyptus-enterprise.repo
-      when: install_enterprise == true
-      tags:
-        - repository
-        - package
+    - include: tasks/repositories.yml
 
 - include: package/euca2ools.yml
 - include: package/console.yml

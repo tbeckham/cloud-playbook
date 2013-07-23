@@ -1,3 +1,4 @@
+---
 - name: Configure Eucalyptus Source
   shell: chdir={{ eucalyptus_source_dir }}
          executable=/bin/bash

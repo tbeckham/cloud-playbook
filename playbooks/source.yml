@@ -9,15 +9,18 @@
 
 - include: package/euca2ools.yml
 
-- name: Prepare Source
+- name: Source Install
   hosts: all
   vars_files:
     - vars/cloud_defaults.yml
     - vars/source.yml
     - ['../cloud_config.yml']
   tasks:
+    - include: tasks/repositories.yml
     - include: tasks/deps.yml
     - include: tasks/build.yml
+    - name: Create Eucalyptus User
+      user: name=eucalyptus
 
 - include: source/clc.yml
 - include: source/walrus.yml

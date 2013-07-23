@@ -1,3 +1,4 @@
+---
 - name: Install Development Repository
   template: src=templates/eucalyptus-devel.repo.j2
             dest=/etc/yum.repos.d/eucalyptus-devel.repo
