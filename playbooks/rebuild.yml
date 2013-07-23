@@ -1,0 +1,26 @@
+---
+- name: Rebuild all hosts
+  hosts: all
+  tasks:
+    - name: Install koan cobbler tool
+      yum: name=koan state=present
+
+    - name: Rebuild hosts with default profile
+      command: koan --replace-self
+
+    - name: Power cycle hosts
+      command: /sbin/reboot
+
+    - name: Wait for hosts to go down
+      local_action: wait_for
+                    host={{ inventory_host }}
+                    port=22
+                    state=stopped
+
+    - name: Wait for hosts to come up
+      local_action: wait_for
+                    host={{ inventory_host }}
+                    port=22
+
+    - name: Yum update hosts
+      command: yum -y update
