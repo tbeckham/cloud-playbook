@@ -1,24 +1,54 @@
 ---
-eucalyptus_repo_url: http://downloads.eucalyptus.com/software/eucalyptus/nightly/3.4/centos/6/x86_64/
-euca2ools_repo_url: http://downloads.eucalyptus.com/software/euca2ools/3.0/centos/6/x86_64/
-eucalyptus_commit_ref: testing
-enterprise_commit_ref: testing
+#
+# General Build Settings:
+#
+# install_enterprise - (default: false) If false, then github repository will be used
+# ntp_server         - NTP server for all cloud hosts to sync with
+# pubkey             - User public key to install on all cloud hosts
+#
 install_enterprise: false
-eucalyptus_repo: repo-euca@git.eucalyptus-systems.com:internal.git
-# ntp_server: qa-system.eucalyptus-systems.com
-ntp_server: 192.168.1.144
+ntp_server: qa-system.eucalyptus-systems.com
 pubkey: ~/.ssh/id_rsa.pub
 
 #
-# VMWare Broker Configuration
+# Enterprise Build Settings:
+#
+# use_vmware   - (default: false)
+# use_san      - (default: false)
+# san_provider - One of: NetappProvider, EmcVnxProvider, EquallogicProvider
 #
 use_vmware: false
+use_san: false
+san_provider: NetappProvider
+
+#
+# Enterprise Package Repositories:
+#
+# vmware_sdk_url - Location of VMWare SDK Yum repository
+#
 vmware_sdk_url: http://packages.release.eucalyptus-systems.com/yum/tags/euca-master-plugin-build-bootstrap/centos/6/x86_64/
 
 #
-# SAN Provider Configuration
+# Yum Package Repositories:
 #
-use_san: false
-# VALUES: NetappProvider, EmcVnxProvider, EquallogicProvider
-san_provider: NetappProvider
+# eucalyptus_repo_url - Eucalyptus OSS Packages (uses commit ref instead if not present)
+# euca2ools_repo_url  - Euca2ools Packages
+# devel_repo_url      - Eucalyptus Development Packages
+#
+eucalyptus_repo_url: http://downloads.eucalyptus.com/software/eucalyptus/nightly/3.4/centos/6/x86_64/
+euca2ools_repo_url: http://downloads.eucalyptus.com/software/euca2ools/3.0/centos/6/x86_64/
+devel_repo_url: http://downloads.eucalyptus.com/software/eucalyptus/build-deps/3.3/centos/6/x86_64/
+
+#
+# Git Repositories:
+#
+# eucalyptus_commit_ref    - Git commit reference for Eucalyptus OSS repository (or packages)
+# enterprise_commit_ref    - Git commit reference for Enterprise repository (or packages)
+# eucalyptus_github_repo   - Git repository for Eucalyptus OSS only (github)
+# eucalyptus_internal_repo - Git repository for Internal use (includes enterprise)
+#
+eucalyptus_commit_ref: testing
+enterprise_commit_ref: testing
+eucalyptus_github_repo: https://github.com/eucalyptus/eucalyptus.git
+eucalyptus_internal_repo: repo-euca@git.eucalyptus-systems.com:internal.git
 
