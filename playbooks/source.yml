@@ -7,7 +7,7 @@
   roles:
     - common
 
-- include: packages/euca2ools.yml
+- include: package/euca2ools.yml
 
 - name: Prepare Source
   hosts: all
@@ -18,3 +18,10 @@
   tasks:
     - include: tasks/deps.yml
     - include: tasks/build.yml
+
+- include: source/clc.yml
+- include: source/walrus.yml
+- include: source/sc.yml
+- include: source/cc.yml
+- include: source/nc.yml
+

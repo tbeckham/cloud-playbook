@@ -2,33 +2,35 @@
 - name: Common Host Configuration
   hosts: all
   vars_files:
-    - ['../cloud_config.yml', '../vars/cloud_defaults.yml']
+    - vars/cloud_defaults.yml
+    - ['../cloud_config.yml']
   roles:
     - common
 
 - name: Install Repositories
   hosts: all
   vars_files:
+    - vars/cloud_defaults.yml
     - ['../cloud_config.yml']
   tasks:
     - name: Eucalyptus Repository
       template: src=templates/eucalyptus.repo.j2 dest=/etc/yum.repos.d/eucalyptus.repo
       tags:
         - repository
-        - packages
+        - package
 
     - name: Enterprise Repository
       template: src=templates/eucalyptus-enterprise.repo.j2 dest=/etc/yum.repos.d/eucalyptus-enterprise.repo
       when: install_enterprise == true
       tags:
         - repository
-        - packages
+        - package
 
-- include: packages/euca2ools.yml
-- include: packages/console.yml
-- include: packages/clc.yml
-- include: packages/cc.yml
-- include: packages/sc.yml
-- include: packages/walrus.yml
-- include: packages/nc.yml
+- include: package/euca2ools.yml
+- include: package/console.yml
+- include: package/clc.yml
+- include: package/cc.yml
+- include: package/sc.yml
+- include: package/walrus.yml
+- include: package/nc.yml
 

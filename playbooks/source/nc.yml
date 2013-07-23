@@ -1,0 +1,12 @@
+---
+- name: Install Node Controller
+  hosts: node_controller
+  vars_files:
+    - ../vars/cloud_defaults.yml
+    - ../vars/source.yml
+    - ['../../cloud_config.yml']
+  tasks:
+    - name: Install Node Controller Symlink
+      file: src={{ eucalyptus_prefix }}/etc/init.d/eucalyptus-nc
+            dst=/etc/init.d/eucalyptus-nc
+            state=link

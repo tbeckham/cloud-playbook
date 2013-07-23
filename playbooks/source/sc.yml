@@ -1,0 +1,12 @@
+---
+- name: Install Storage Controller
+  hosts: storage_controller
+  vars_files:
+    - ../vars/cloud_defaults.yml
+    - ../vars/source.yml
+    - ['../../cloud_config.yml']
+  tasks:
+    - name: Install Storage Controller Symlink
+      file: src={{ eucalyptus_prefix }}/etc/init.d/eucalyptus-cloud
+            dst=/etc/init.d/eucalyptus-cloud
+            state=link

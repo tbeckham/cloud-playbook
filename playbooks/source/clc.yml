@@ -1,0 +1,12 @@
+---
+- name: Install Cloud Controller
+  hosts: cloud_controller
+  vars_files:
+    - ../vars/cloud_defaults.yml
+    - ../vars/source.yml
+    - ['../../cloud_config.yml']
+  tasks:
+    - name: Install Cloud Controller Symlink
+      file: src={{ eucalyptus_prefix }}/etc/init.d/eucalyptus-cloud
+            dst=/etc/init.d/eucalyptus-cloud
+            state=link

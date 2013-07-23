@@ -6,7 +6,7 @@
   when: use_vmware == true
 
 - name: Install Build Dependencies
-  yum: name={{ devel_packages|join(',') }} state=latest
+  yum: list={{ devel_packages|join(',') }} state=latest
 
 - name: Authorize QA Keys
   authorized_key: user=root key='{{ item }}'
@@ -18,15 +18,15 @@
   copy: src=../files/ssh_config dest=~/.ssh/config
 
 - name: Checkout Internal Eucalyptus Repository
-  git: dest={{ eucalyptus_source_dir }}
-       repo={{ eucalyptus_repo }}
-       version={{ enterprise_commit_ref }}
+  git: dest="{{ eucalyptus_source_dir }}"
+       repo="{{ eucalyptus_internal_repo }}"
+       version="{{ enterprise_commit_ref }}"
   when: install_enterprise == true
 
 - name: Checkout Github Eucalyptus Repository
-  git: dest={{ eucalyptus_source_dir }}
-       repo={{ eucalyptus_repo }}
-       version={{ eucalyptus_commit_ref }}
+  git: dest="{{ eucalyptus_source_dir }}"
+       repo="{{ eucalyptus_github_repo }}"
+       version="{{ eucalyptus_commit_ref }}"
   when: install_enterprise == false
 
 - name: Download WSDL Script

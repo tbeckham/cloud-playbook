@@ -1,0 +1,12 @@
+---
+- name: Install Cluster Controller
+  hosts: cluster_controller
+  vars_files:
+    - ../vars/cloud_defaults.yml
+    - ../vars/source.yml
+    - ['../../cloud_config.yml']
+  tasks:
+    - name: Install Cluster Controller Symlink
+      file: src={{ eucalyptus_prefix }}/etc/init.d/eucalyptus-cc
+            dst=/etc/init.d/eucalyptus-cc
+            state=link

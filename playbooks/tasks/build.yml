@@ -5,7 +5,7 @@
   environment:
     EUCALYPTUS: '{{ eucalyptus_prefix }}'
   tags:
-    - source_build
+    - source
 
 - name: Build Eucalyptus Source
   shell: chdir={{ eucalyptus_source_dir }}
@@ -14,13 +14,13 @@
   environment:
     EUCALYPTUS: '{{ eucalyptus_prefix }}'
   tags:
-    - source_build
+    - source
 
 - name: Install Eucalyptus Source
   shell: chdir={{ eucalyptus_source_dir }}
          executable=/bin/bash
-         make deploy
+         make install
   environment:
     EUCALYPTUS: '{{ eucalyptus_prefix }}'
   tags:
-    - source_build
+    - source
