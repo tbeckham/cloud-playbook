@@ -6,7 +6,9 @@
   when: use_vmware == true
 
 - name: Install Build Dependencies
-  yum: list={{ devel_packages|join(',') }} state=latest
+  yum: name={{ devel_packages|join(',') }} state=present
+  tags:
+    - deps
 
 - name: Authorize QA Keys
   authorized_key: user=root key='{{ item }}'
