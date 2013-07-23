@@ -6,7 +6,7 @@
     - ../vars/source.yml
     - ['../../cloud_config.yml']
   tasks:
-    - name: Install Node Controller Runtime Dependencies
+    - name: Install Cluster Controller Runtime Dependencies
       yum: name=httpd,python-boto state=latest
 
     - name: Install Cluster Controller Symlink
