@@ -21,6 +21,8 @@
       local_action: wait_for
                     host={{ inventory_host }}
                     port=22
+                    delay=300
+                    timeout=600
 
     - name: Yum update hosts
       command: yum -y update
