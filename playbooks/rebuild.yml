@@ -1,4 +1,12 @@
 ---
+- name: Common Host Configuration
+  hosts: all
+  vars_files:
+    - vars/cloud_defaults.yml
+    - ['../cloud_config.yml']
+  roles:
+    - common
+
 - name: Rebuild all hosts
   hosts: all
   tasks:
@@ -12,17 +20,17 @@
       command: /sbin/reboot
 
     - name: Wait for hosts to go down
-      local_action: wait_for
-                    host={{ inventory_host }}
-                    port=22
-                    state=stopped
+      wait_for: host={{ inventory_host }}
+                port=22
+                state=stopped
+      delegate_to: localhost
 
     - name: Wait for hosts to come up
-      local_action: wait_for
-                    host={{ inventory_host }}
-                    port=22
-                    delay=300
-                    timeout=1200
+      wait_for: host={{ inventory_host }}
+                port=22
+                delay=300
+                timeout=1200
+      delegate_to: localhost
 
     - name: Yum update hosts
       command: yum -y update
