@@ -22,7 +22,7 @@
                     host={{ inventory_host }}
                     port=22
                     delay=300
-                    timeout=600
+                    timeout=1200
 
     - name: Yum update hosts
       command: yum -y update
