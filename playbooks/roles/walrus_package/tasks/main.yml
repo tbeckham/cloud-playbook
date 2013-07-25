@@ -1,0 +1,5 @@
+---
+- name: Walrus Package Install
+  yum: name=eucalyptus-walrus state=latest
+  tags:
+    - packages

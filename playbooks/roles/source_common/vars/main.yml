@@ -27,6 +27,5 @@ devel_packages:
   - rampartc-devel
   - swig
   - xalan-j2-xsltc
-eucalyptus_prefix: /opt/eucalyptus
 eucalyptus_source_dir: /root/eucalyptus
 

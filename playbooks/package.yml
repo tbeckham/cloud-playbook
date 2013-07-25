@@ -6,6 +6,7 @@
     - ['../cloud_config.yml']
   roles:
     - common
+    - euca2ools
 
 - name: Install Repositories
   hosts: all
@@ -15,11 +16,45 @@
   tasks:
     - include: tasks/repositories.yml
 
-- include: package/euca2ools.yml
-- include: package/console.yml
-- include: package/clc.yml
-- include: package/cc.yml
-- include: package/sc.yml
-- include: package/walrus.yml
-- include: package/nc.yml
+- name: Cloud Controller Configuration
+  hosts: cloud_controller
+  vars_files:
+    - vars/cloud_defaults.yml
+    - ['../cloud_config.yml']
+  roles:
+    - clc_package
+
+- name: Cluster Controller Configuration
+  hosts: cluster_controller
+  vars_files:
+    - vars/cloud_defaults.yml
+    - ['../cloud_config.yml']
+  roles:
+    - cc_package
+
+- name: Storage Controller Configuration
+  hosts: storage_controller
+  vars_files:
+    - vars/cloud_defaults.yml
+    - ['../cloud_config.yml']
+  roles:
+    - sc_package
+
+- name: Walrus Configuration
+  hosts: walrus
+  vars_files:
+    - vars/cloud_defaults.yml
+    - ['../cloud_config.yml']
+  roles:
+    - walrus_common
+    - walrus_package
+
+- name: Node Controller Configuration
+  hosts: node_controller
+  vars_files:
+    - vars/cloud_defaults.yml
+    - ['../cloud_config.yml']
+  roles:
+    - nc_common
+    - nc_package
 

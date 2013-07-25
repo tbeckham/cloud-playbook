@@ -6,6 +6,7 @@ pubkey: ~/.ssh/id_rsa.pub
 install_enterprise: false
 use_san: false
 use_vmware: false
+eucalyptus_prefix: /opt/eucalyptus
 
 #
 # Enterprise Config Options

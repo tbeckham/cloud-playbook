@@ -1,0 +1,11 @@
+---
+- name: Cluster Package Install
+  yum: name=eucalyptus-cc state=latest
+  tags:
+    - packages
+
+- name: VMWare Broker Install 
+  yum: name=eucalyptus-enterprise-vmware-broker state=latest
+  when: use_vmware == true
+  tags:
+    - packages

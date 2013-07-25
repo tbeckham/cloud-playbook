@@ -6,25 +6,46 @@
     - ['../cloud_config.yml']
   roles:
     - common
+    - euca2ools
+    - source_common
 
-- include: package/euca2ools.yml
-
-- name: Source Install
-  hosts: all
+- name: Cloud Controller Configuration
+  hosts: cloud_controller
   vars_files:
     - vars/cloud_defaults.yml
-    - vars/source.yml
     - ['../cloud_config.yml']
-  tasks:
-    - include: tasks/repositories.yml
-    - include: tasks/deps.yml
-    - include: tasks/build.yml
-    - name: Create Eucalyptus User
-      user: name=eucalyptus
+  roles:
+    - clc_source
 
-- include: source/clc.yml
-- include: source/walrus.yml
-- include: source/sc.yml
-- include: source/cc.yml
-- include: source/nc.yml
+- name: Walrus Configuration
+  hosts: walrus
+  vars_files:
+    - vars/cloud_defaults.yml
+    - ['../cloud_config.yml']
+  roles:
+    - walrus_common
+    - walrus_source
 
+- name: Storage Controller Configuration
+  hosts: storage_controller
+  vars_files:
+    - vars/cloud_defaults.yml
+    - ['../cloud_config.yml']
+  roles:
+    - sc_source
+
+- name: Cluster Controller Configuration
+  hosts: cluster_controller
+  vars_files:
+    - vars/cloud_defaults.yml
+    - ['../cloud_config.yml']
+  roles:
+    - cc_source
+
+- name: Node Controller Configuration
+  hosts: node_controller
+  vars_files:
+    - vars/cloud_defaults.yml
+    - ['../cloud_config.yml']
+  roles:
+    - nc_source

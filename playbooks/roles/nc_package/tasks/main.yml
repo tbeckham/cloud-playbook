@@ -1,0 +1,5 @@
+---
+- name: Node Package Install
+  yum: name=eucalyptus-nc state=latest
+  tags:
+    - packages

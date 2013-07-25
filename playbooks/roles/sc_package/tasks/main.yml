@@ -1,0 +1,7 @@
+---
+- name: Storage Package Install 
+  yum: name=eucalyptus-sc state=latest
+  tags:
+    - packages
+- include: enterprise.yml
+  when: install_enterprise == true

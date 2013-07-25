@@ -1,6 +1,6 @@
 ---
 - name: Install Development Repository
-  template: src=templates/eucalyptus-devel.repo.j2
+  template: src=eucalyptus-devel.repo.j2
             dest=/etc/yum.repos.d/eucalyptus-devel.repo
 
 - include: vddk.yml
@@ -14,11 +14,11 @@
 - name: Authorize QA Keys
   authorized_key: user=root key='{{ item }}'
   with_file:
-    - ../files/qa-public-1.key
-    - ../files/qa-public-2.key
+    - qa-public-1.key
+    - qa-public-2.key
 
 - name: Install SSH Configuration
-  copy: src=../files/ssh_config dest=~/.ssh/config
+  copy: src=ssh_config dest=~/.ssh/config
 
 - name: Checkout Internal Eucalyptus Repository
   git: dest="{{ eucalyptus_source_dir }}"

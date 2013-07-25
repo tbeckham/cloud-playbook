@@ -1,0 +1,7 @@
+---
+- name: Cloud Package Install
+  yum: name=eucalyptus-cloud state=latest
+  tags:
+    - packages
+- include: enterprise.yml
+  when: install_enterprise == true

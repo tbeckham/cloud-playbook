@@ -1,0 +1,7 @@
+---
+- name: Install Euca2ools Repository
+  template: src=euca2ools.repo.j2
+            dest=/etc/yum.repos.d/euca2ools.repo
+
+- name: Install Euca2ools Package
+  yum: name=euca2ools state=latest

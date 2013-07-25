@@ -1,0 +1,15 @@
+---
+- name: Install ELRepo Key
+  copy: src=RPM-GPG-KEY-elrepo.org dest=/etc/pki/rpm-gpg
+  tags:
+    - packages
+
+- name: Install ELRepo Repository
+  copy: src=elrepo.repo dest=/etc/yum.repos.d/elrepo.repo
+  tags:
+    - packages
+
+- name: Install DRBD
+  yum: name=drbd83,drbd83-kmod state=latest
+  tags:
+    - packages
