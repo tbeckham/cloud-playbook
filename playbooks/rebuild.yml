@@ -1,12 +1,4 @@
 ---
-- name: Common Host Configuration
-  hosts: all
-  vars_files:
-    - vars/cloud_defaults.yml
-    - ['../cloud_config.yml']
-  roles:
-    - common
-
 - name: Rebuild all hosts
   hosts: all
   tasks:

@@ -4,11 +4,14 @@
 #
 # install_enterprise - (default: false) If false, then github repository will be used
 # ntp_server         - NTP server for all cloud hosts to sync with
-# pubkey             - User public key to install on all cloud hosts
+# pubkey             - (optional) User public key to install on all cloud hosts
+# nameservers        - (optional) A list of IP addresses
 #
 install_enterprise: false
 ntp_server: qa-system.eucalyptus-systems.com
 pubkey: ~/.ssh/id_rsa.pub
+nameservers:
+    - '8.8.8.8'
 
 #
 # Enterprise Build Settings:
