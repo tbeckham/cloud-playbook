@@ -1,0 +1,5 @@
+---
+- name: Expire Yum Cache
+  command: yum clean expire-cache
+  tags:
+    - packages
