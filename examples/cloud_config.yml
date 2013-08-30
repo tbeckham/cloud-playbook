@@ -18,11 +18,10 @@ nameservers:
 #
 # use_vmware   - (default: false)
 # use_san      - (default: false)
-# san_provider - One of: NetappProvider, EmcVnxProvider, EquallogicProvider
+# san_provider - One of: NetappProvider, EmcVnxProvider, EquallogicProvider or None
 #
 use_vmware: false
-use_san: false
-san_provider: NetappProvider
+san_provider: None
 
 #
 # Enterprise Package Repositories:
