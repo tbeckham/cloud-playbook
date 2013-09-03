@@ -1,6 +1,4 @@
 ---
-- include: expire_cache.yml
-- include: epel_repo.yml
 - include: ntp.yml
 - include: disable_firewall.yml
 - include: interface_config.yml

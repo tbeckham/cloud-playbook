@@ -5,6 +5,7 @@
     - vars/cloud_defaults.yml
     - ['../cloud_config.yml']
   roles:
+    - repo_common
     - common
     - euca2ools
 

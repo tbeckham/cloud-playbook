@@ -1,4 +1,9 @@
 ---
+- name: Repository Common Tasks
+  hosts: all
+  roles:
+    - repo_common
+
 - name: Rebuild all hosts
   hosts: all
   tasks:
@@ -12,17 +17,34 @@
       command: /sbin/reboot
 
     - name: Wait for hosts to go down
-      wait_for: host={{ inventory_host }}
+      wait_for: host={{ inventory_hostname }}
                 port=22
                 state=stopped
       delegate_to: localhost
 
     - name: Wait for hosts to come up
-      wait_for: host={{ inventory_host }}
+      wait_for: host={{ inventory_hostname }}
                 port=22
-                delay=300
+                delay=120
                 timeout=1200
       delegate_to: localhost
 
     - name: Yum update hosts
       command: yum -y update
+
+    - name: Power cycle hosts (again)
+      command: /sbin/reboot
+
+    - name: Wait for hosts to go down
+      wait_for: host={{ inventory_hostname }}
+                port=22
+                state=stopped
+      delegate_to: localhost
+
+    - name: Wait for hosts to come up
+      wait_for: host={{ inventory_hostname }}
+                port=22
+                delay=120
+                timeout=1200
+      delegate_to: localhost
+
