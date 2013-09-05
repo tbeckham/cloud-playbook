@@ -8,7 +8,8 @@
   hosts: all
   tasks:
     - name: Install koan cobbler tool
-      yum: name=koan state=present
+      yum: name=koan disablerepo='eucalyptus*,euca2ools*'
+           enablerepo=base,updates,epel state=present
 
     - name: Rebuild hosts with default profile
       command: koan --replace-self
