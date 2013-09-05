@@ -8,7 +8,9 @@ name=Eucalyptus Enterprise
 {% if enterprise_repo_url is defined %}
 baseurl={{ enterprise_repo_url }}
 {% else %}
-mirrorlist=http://packages.release.eucalyptus-systems.com/api/1/genrepo?distro=centos&releasever=$releasever&arch=$basearch&url=repo-euca@git.eucalyptus-systems.com:internal.git&ref={{ enterprise_commit_ref }}
+mirrorlist=http://packages.release.eucalyptus-systems.com/api/1/genrepo?distro=centos&releasever=$releasever&arch=$basearch&url=repo-euca@git.eucalyptus-systems.com:internal.git&ref={{ enterprise_commit_ref }}{% if allow_old == true %}&allow-old
+{% endif %}
 {% endif %}
 gpgcheck=0
 enabled=1
+
