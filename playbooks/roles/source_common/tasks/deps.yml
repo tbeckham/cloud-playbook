@@ -4,7 +4,7 @@
             dest=/etc/yum.repos.d/eucalyptus-devel.repo
 
 - include: vddk.yml
-  when: use_vmware == true
+  when: install_enterprise == true
 
 - name: Install Build Dependencies
   yum: name={{ devel_packages|join(',') }} state=present

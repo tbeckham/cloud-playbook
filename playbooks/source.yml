@@ -10,6 +10,14 @@
     - euca2ools
     - source_common
 
+- name: Install Repositories
+  hosts: all
+  vars_files:
+    - vars/cloud_defaults.yml
+    - ['../cloud_config.yml']
+  tasks:
+    - include: tasks/repositories.yml
+
 - name: Cloud Controller Configuration
   hosts: cloud_controller
   vars_files:
