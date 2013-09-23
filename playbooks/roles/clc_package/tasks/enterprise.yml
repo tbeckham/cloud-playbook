@@ -1,10 +1,4 @@
 ---
-- name: VMWare Broker Libs Install
-  yum: name=eucalyptus-enterprise-vmware-broker-libs state=latest
-  when: vmware_broker in groups
-  tags:
-    - packages
-
 - name: EMC Libs Install
   yum: name=eucalyptus-enterprise-storage-san-emc-libs state=latest
   when: san_provider == 'EmcVnxProvider'
