@@ -1,0 +1,6 @@
+---
+- name: VMWare Broker Libs Install 
+  yum: name=eucalyptus-enterprise-vmware-broker-libs state=latest
+  when: use_vmware == true
+  tags:
+    - packages

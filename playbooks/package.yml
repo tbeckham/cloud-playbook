@@ -23,6 +23,7 @@
     - vars/cloud_defaults.yml
     - ['../cloud_config.yml']
   roles:
+    - enterprise_common
     - clc_package
 
 - name: Cluster Controller Configuration
@@ -39,6 +40,7 @@
     - vars/cloud_defaults.yml
     - ['../cloud_config.yml']
   roles:
+    - enterprise_common
     - sc_package
 
 - name: Walrus Configuration
@@ -47,6 +49,7 @@
     - vars/cloud_defaults.yml
     - ['../cloud_config.yml']
   roles:
+    - enterprise_common
     - walrus_common
     - walrus_package
 
