@@ -10,7 +10,7 @@
   yum: name=yum-utils state=present
 
 - name: Install Build Dependencies
-  shell: yum-builddep {{ srpm_url }}
+  shell: yum-builddep --nogpgcheck {{ srpm_url }}
   tags:
     - deps
 
