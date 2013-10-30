@@ -13,7 +13,7 @@
   get_url: url={{ srpm_url }} dest=/root/ force=yes
 
 - name: Install Build Dependencies
-  shell: yum-builddep --nogpgcheck /root/eucalyptus*.src.rpm
+  shell: yum-builddep --nogpgcheck -y /root/eucalyptus*.src.rpm
   tags:
     - deps
 
