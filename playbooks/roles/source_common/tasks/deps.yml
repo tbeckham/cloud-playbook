@@ -9,8 +9,11 @@
 - name: Install Yum Utils
   yum: name=yum-utils state=present
 
+- name: Download Eucalyptus SRPM
+  get_url: url={{ srpm_url }} dest=/root/ force=yes
+
 - name: Install Build Dependencies
-  shell: yum-builddep --nogpgcheck {{ srpm_url }}
+  shell: yum-builddep --nogpgcheck /root/eucalyptus*.src.rpm
   tags:
     - deps
 
