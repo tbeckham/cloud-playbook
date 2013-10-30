@@ -6,8 +6,11 @@
 - include: vddk.yml
   when: install_enterprise == true
 
+- name: Install Yum Utils
+  yum: name=yum-utils state=present
+
 - name: Install Build Dependencies
-  yum: name={{ devel_packages|join(',') }} state=present
+  shell: yum-builddep {{ srpm_url }}
   tags:
     - deps
 
