@@ -1,6 +1,0 @@
----
-interface: '{{ ansible_default_ipv4.alias }}'
-mac: '{{ ansible_default_ipv4.macaddress|upper }}'
-ipaddr: '{{ ansible_default_ipv4.address }}'
-gateway: '{{ ansible_default_ipv4.gateway }}'
-netmask: '{{ ansible_default_ipv4.netmask }}'

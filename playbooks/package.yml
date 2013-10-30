@@ -59,6 +59,5 @@
     - vars/cloud_defaults.yml
     - ['../cloud_config.yml']
   roles:
-    - nc_common
     - nc_package
 
