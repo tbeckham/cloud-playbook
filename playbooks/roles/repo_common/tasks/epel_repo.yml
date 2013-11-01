@@ -6,7 +6,7 @@
     - epel
 
 - name: Install EPEL Repository
-  copy: src=epel.repo dest=/etc/yum.repos.d
+  copy: src=epel.repo dest=/etc/yum.repos.d force=no
   tags:
     - repository
     - epel
