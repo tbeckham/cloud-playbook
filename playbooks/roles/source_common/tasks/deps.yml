@@ -11,7 +11,7 @@
 
 - name: Download Eucalyptus SRPM
   get_url: url={{ spec_url }} dest=/root/ force=yes
-  tag:
+  tags:
     - deps
 
 - name: Install Build Dependencies
