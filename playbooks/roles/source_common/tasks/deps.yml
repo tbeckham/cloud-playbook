@@ -20,7 +20,7 @@
     - deps
 
 - name: Get Runtime Dependency List
-  shell: rpmspec -P eucalyptus.spec | grep -E "^Requires:" | awk '{print $2}' | grep -v \/ | grep -v eucalyptus | sort -u
+  shell: grep -E "^Requires:" eucalyptus.spec | awk '{print $2}' | grep -v -e % -e euca -e \/ | sort -u
   register: runtime_deps
   tags:
     - deps
