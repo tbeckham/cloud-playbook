@@ -10,10 +10,24 @@
   yum: name=yum-utils state=present
 
 - name: Download Eucalyptus SRPM
-  get_url: url={{ srpm_url }} dest=/root/ force=yes
+  get_url: url={{ spec_url }} dest=/root/ force=yes
+  tag:
+    - deps
 
 - name: Install Build Dependencies
-  shell: yum-builddep --nogpgcheck -y /root/eucalyptus*.src.rpm
+  shell: yum-builddep --nogpgcheck -y /root/eucalyptus.spec
+  tags:
+    - deps
+
+- name: Get Runtime Dependency List
+  shell: rpmspec -P eucalyptus.spec | grep -E "^Requires:" | awk '{print $2}' | grep -v \/ | grep -v eucalyptus | sort -u
+  register: runtime_deps
+  tags:
+    - deps
+
+- name: Install Runtime Dependencies
+  yum: name={{ item }} state=present
+  with_items: runtime_deps.stdout
   tags:
     - deps
 
