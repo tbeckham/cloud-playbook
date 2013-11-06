@@ -11,7 +11,7 @@
       yum: name=koan state=present
 
     - name: Rebuild hosts with default profile
-      command: koan --server=host --replace-self
+      command: koan --replace-self
 
     - name: Power cycle hosts
       command: /sbin/reboot
