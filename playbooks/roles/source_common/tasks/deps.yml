@@ -9,7 +9,7 @@
 - name: Install Yum Utils
   yum: name=yum-utils state=present
 
-- name: Download Eucalyptus SRPM
+- name: Download Eucalyptus Spec File
   get_url: url={{ spec_url }} dest=/root/ force=yes
   tags:
     - deps
