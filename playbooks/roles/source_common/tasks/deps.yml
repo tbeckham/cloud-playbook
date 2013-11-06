@@ -6,16 +6,30 @@
 - include: vddk.yml
   when: install_enterprise == true
 
-- name: Install Build Dependencies
-  yum: name={{ devel_packages|join(',') }} state=present
+- name: Install Yum Utils
+  yum: name=yum-utils state=present
+
+- name: Download Eucalyptus Spec File
+  get_url: url={{ spec_url }} dest=/root/ force=yes
   tags:
     - deps
 
-- name: Authorize QA Keys
-  authorized_key: user=root key='{{ item }}'
-  with_file:
-    - qa-public-1.key
-    - qa-public-2.key
+- name: Install Build Dependencies
+  shell: yum-builddep --nogpgcheck -y /root/eucalyptus.spec
+  tags:
+    - deps
+
+- name: Get Runtime Dependency List
+  shell: grep -E "^Requires:" eucalyptus.spec | awk '{print $2}' | grep -v -e % -e euca -e \/ | sort -u
+  register: runtime_deps
+  tags:
+    - deps
+
+- name: Install Runtime Dependencies
+  yum: name={{ item }} state=present
+  with_items: runtime_deps.stdout
+  tags:
+    - deps
 
 - name: Install SSH Configuration
   copy: src=ssh_config dest=~/.ssh/config
